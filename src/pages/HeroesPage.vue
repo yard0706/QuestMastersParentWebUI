@@ -57,7 +57,7 @@
       color="primary"
       label="Добавить нового Героя!"
       icon="person_add"
-      @click="addNewHero(302)"
+      @click="addNewHero()"
     />
   </div>
 </template>
@@ -67,16 +67,18 @@ import { defineComponent } from "vue";
 import { ref } from "vue";
 import { api } from "boot/axios";
 import { useQuasar } from "quasar";
+import { useQuestStore } from "stores/example-store";
 
 export default defineComponent({
   name: "QMPage",
   setup() {
     const $q = useQuasar();
     const data = ref([]);
+    const qst = useQuestStore();
 
     function loadData() {
       api
-        .get("/heroes/302")
+        .get("/heroes/" + qst.familyId)
         .then((response) => {
           data.value = response.data;
           console.log(data.value);
@@ -102,12 +104,12 @@ export default defineComponent({
       });
     }
 
-    function addNewHero(familyId) {
+    function addNewHero() {
       data.value.push({
         name: "",
         description: "",
         money: 0,
-        family: { id: familyId },
+        family: { id: qst.familyId },
       });
     }
 

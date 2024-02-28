@@ -60,7 +60,7 @@
       color="primary"
       label="Добавить нового КМ"
       icon="person_add"
-      @click="addNewQM(302)"
+      @click="addNewQM()"
     />
   </div>
 </template>
@@ -70,16 +70,18 @@ import { defineComponent } from "vue";
 import { ref } from "vue";
 import { api } from "boot/axios";
 import { useQuasar } from "quasar";
+import { useQuestStore } from "stores/example-store";
 
 export default defineComponent({
   name: "QMPage",
   setup() {
     const $q = useQuasar();
     const data = ref([]);
+    const qst = useQuestStore();
 
     function loadData() {
       api
-        .get("/qms/302")
+        .get("/qms/" + qst.familyId)
         .then((response) => {
           data.value = response.data;
           console.log(data.value);
@@ -105,13 +107,13 @@ export default defineComponent({
       });
     }
 
-    function addNewQM(familyId) {
+    function addNewQM() {
       data.value.push({
         name: "",
         familyMemberKind: "",
         description: "",
         treasury: 0,
-        family: { id: familyId },
+        family: { id: qst.familyId },
         boss: true,
       });
     }

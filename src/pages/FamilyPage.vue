@@ -18,6 +18,7 @@ import { defineComponent } from "vue";
 import { ref } from "vue";
 import { api } from "boot/axios";
 import { useQuasar } from "quasar";
+import { useQuestStore } from "stores/example-store";
 
 export default defineComponent({
   name: "FamilyPage",
@@ -25,10 +26,11 @@ export default defineComponent({
     const $q = useQuasar();
     const data = ref(null);
     const dbFamily = ref("");
+    const qst = useQuestStore();
 
     function loadData() {
       api
-        .get("/family/302/552")
+        .get("/family/" + qst.familyId + "/552")
         .then((response) => {
           data.value = response.data;
           console.log(data.value);

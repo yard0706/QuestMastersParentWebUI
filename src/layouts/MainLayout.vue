@@ -38,6 +38,7 @@
 <script>
 import { defineComponent, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
+import { useQuestStore } from "stores/example-store";
 
 const linksList = [
   {
@@ -60,7 +61,7 @@ const linksList = [
   },
   {
     title: "Таверна",
-    caption: "Добавление кветов, просмотр состояния",
+    caption: "Добавление квестов, просмотр состояния",
     icon: "home",
     link: "tavernquests",
   },
@@ -74,6 +75,9 @@ export default defineComponent({
   },
 
   setup() {
+    const qst = useQuestStore();
+    qst.familyId = 302;
+
     const leftDrawerOpen = ref(false);
 
     return {

@@ -53,12 +53,11 @@
               <div class="q-gutter-md">
                 <q-btn
                   color="secondary"
-                  label="Изменить"
+                  label="Настроить"
                   to="quest"
                   icon="edit"
                   @click="editQuest(props.row.id)"
-                  >{{ props.row.id }}</q-btn
-                >
+                />
                 <q-btn
                   color="red"
                   label="Удалить"
@@ -99,11 +98,10 @@ export default defineComponent({
 
     const qst = useQuestStore();
     function newQuest() {
-      qst.familyId = 302;
+      console.log("add new quest");
     }
 
     function editQuest(questId) {
-      qst.familyId = 302;
       qst.questId = questId;
     }
 
@@ -125,7 +123,7 @@ export default defineComponent({
 
     function loadTavernData() {
       api
-        .get("/tavern/302")
+        .get("/tavern/" + qst.familyId)
         .then((response) => {
           tavern.value = response.data;
           console.log(tavern.value);
@@ -142,7 +140,7 @@ export default defineComponent({
 
     function loadData() {
       api
-        .get("/quests/302")
+        .get("/quests/" + qst.familyId)
         .then((response) => {
           data.value = response.data;
           console.log("update quests data");
