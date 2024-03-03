@@ -6,11 +6,15 @@ const routes = [
       { path: "", component: () => import("pages/IndexPage.vue") },
       { path: "family", component: () => import("pages/FamilyPage.vue") },
       { path: "qm", component: () => import("pages/QuestMasterPage.vue") },
-      { path: "hero", component: () => import("pages/HeroesPage.vue") },
+      { path: "heros", component: () => import("pages/HeroesPage.vue") },
       { path: "quest", component: () => import("pages/QuestPage.vue") },
       {
         path: "tavernquests",
         component: () => import("pages/TavernQuestsPage.vue"),
+      },
+      {
+        path: "hero",
+        component: () => import("pages/HeroPage.vue"),
       },
     ],
   },

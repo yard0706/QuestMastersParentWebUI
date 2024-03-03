@@ -57,7 +57,7 @@ const linksList = [
     title: "Герои",
     caption: "Создание, редактирование и удаление",
     icon: "face_retouching_natural",
-    link: "hero",
+    link: "heros",
   },
   {
     title: "Таверна",
